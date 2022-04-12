@@ -1,0 +1,18 @@
+.inp {
+    border:none;
+    border-bottom: 1px solid #555657;
+    padding: 5px 10px;
+    outline: none;
+ }
+
+[placeholder]:focus::-webkit-input-placeholder {
+    transition: text-indent 0.4s 0.4s ease; 
+    text-indent: -100%;
+    opacity: 1;
+ }
+
+ .matchday{
+    background: rgb(0,0,75);
+    background: linear-gradient(90deg, rgba(0,0,75,1) 0%, rgba(48,66,198,0.846673703661152) 100%);
+    color: #fff
+ };

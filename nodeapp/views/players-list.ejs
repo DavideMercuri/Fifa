@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">   
+    
+    <title>Lista Calciatori</title>
+  </head>
+<body>
+    <div class="mx-4 mt-5">
+      <div class="mx-3">
+        <input type="text" id="search" class="inp" placeholder="Nome Calciatore"/>
+        <a href="insert" type="button" class="btn btn-success float-end">Inserisci Calciatore</a>
+        <a href="fixtures" type="button" class="mx-3 btn btn-secondary float-end">Calendario&nbsp;&nbsp;<i class="far fa-calendar-alt"></i></a>
+      </div>
+    <table class="table table-bordered mt-3">
+      <thead>
+        <tr>
+          <th class="align-middle text-center" scope="col" style="display: none;">Id</th>
+          <th class="align-middle text-center" scope="col">Foto</th>
+          <th class="align-middle text-center" scope="col">Nome Calciatore</th>
+          <th class="align-middle text-center" scope="col">Ruolo</th>
+          <th class="align-middle text-center" scope="col">Nazionalità</th>
+          <th class="align-middle text-center" scope="col">Squadra</th>
+          <th class="align-middle text-center" scope="col">Gol</th>
+          <th class="align-middle text-center" scope="col">Assist</th>
+          <th class="align-middle text-center" scope="col">MOTM</th>
+          <th class="align-middle text-center" scope="col">Cartellino giallo</th>
+          <th class="align-middle text-center" scope="col">Cartellino Rosso</th>
+          <th class="align-middle text-center" scope="col">Modifica</th>
+          <th class="align-middle text-center" scope="col">Elimina</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%
+        if(userData.length!=0){
+        var i=1;
+        userData.forEach(function(data){
+        %>
+        <tr>
+          <td class="align-middle text-center id" style="display: none;"><%=data.id%></td>
+          <td class="text-center pb-0"><img style="width: 60px; height: 60px;" src=<%=data.photo%></td>
+          <td class="align-middle text-start name"><%=data.name%></td>
+          <td class="align-middle text-center fw-bold"><%=data.position%></td>
+          <td class="align-middle text-center"><%=data.country%></td>
+          <td class="align-middle text-start team-name"><%=data.team%></td>
+          <td class="align-middle text-center"><a href="add-goal?id=<%= data.id %>" class="text-decoration-none">&nbsp;&nbsp;<i class="bi bi-plus-circle-fill text-success"></i></a><a href="remove-goal?id=<%= data.id %>" class="text-decoration-none">&nbsp;&nbsp;<i class="bi bi-dash-circle-fill text-danger"></i></a>&nbsp;&nbsp;<span class="badge bg-primary rounded-pill"><%=data.goals%></span></td>
+          <td class="align-middle text-center"><a href="add-assist?id=<%= data.id %>" class="text-decoration-none">&nbsp;&nbsp;<i class="bi bi-plus-circle-fill text-success"></i></a><a href="remove-assist?id=<%= data.id %>" class="text-decoration-none">&nbsp;&nbsp;<i class="bi bi-dash-circle-fill text-danger"></i></a>&nbsp;&nbsp;<span class="badge bg-warning rounded-pill"><%=data.assist%></span></td>
+          <td class="align-middle text-center"><a href="add-MOTM?id=<%= data.id %>" class="text-decoration-none">&nbsp;&nbsp;<i class="bi bi-plus-circle-fill text-success"></i></a><a href="remove-MOTM?id=<%= data.id %>" class="text-decoration-none">&nbsp;&nbsp;<i class="bi bi-dash-circle-fill text-danger"></i></a>&nbsp;&nbsp;<span class="badge bg-secondary rounded-pill"><%=data.motm%></span></td>
+          <td class="align-middle text-center"><%=data.yellow_card%>&nbsp;<img src="https://i.imgur.com/sItJA8V.png" style="width: 23px;"></td>
+          <td class="align-middle text-center"><%=data.red_card%>&nbsp;<img src="https://i.imgur.com/5wc1dMl.png" style="width: 23px;"></td>
+          <td class="align-middle text-center"><a href="edit?id=<%= data.id %>" class="fs-4 text-secondary text-decoration-none"><i class="fas fa-edit"></i></a></td>
+          <td class="align-middle text-center"><a href="delete?id=<%= data.id %>" class="fs-4 text-danger text-decoration-none"><i class="fas fa-trash-alt"></i></a></td>
+        </tr>
+        <%  i++; }) %>
+        <% } else{ %>
+          <tr>
+            <td colspan="10">No Data Found</td>
+        </tr>
+        <% } %>
+      </tbody>
+      </table>
+      </div>
+      <script src="/javascripts/script.js"></script> 
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+  </body>
+</html>

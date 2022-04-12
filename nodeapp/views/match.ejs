@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+
+    <title>Giornata nr. <%=game.matchday%> | <%=game.home_team%> - <%=game.away_team%></title>
+  </head>
+  <body>
+    <div class="card mx-auto" style="width: 90%; margin-top: 1%;">
+      <div class="card-header pt-0 matchday">
+        <h1 class="text-center mt-3">Giornata <%=game.matchday%></h1></div>
+        <div class="card-body">
+          <div style="margin-top: 5%;">
+            <form method="post">
+              <input type="text" class="text-secondary form-control" id="id_game" name="id_game" hidden value="<%=game.id_game%>">
+              <div class="row text-center justify-content-center mt-5">        
+                <div class="home fw-bold fs-3 col-3"><%=game.home_team%><img src="" style="width: 100px; height: 100px;"></div>
+                <div class="col-5 row justify-content-between">
+                  <input type="number" class="input-group-text goals ms-3 col" id="ht_goals" name="ht_goals" value="<%=game.ht_goals%>" style="max-width: 20%; font-size: 2em">
+                  <div class="fw-bold mt-3 fs-1 col">-</div>
+                  <input dir="rtl" type="number" class="input-group-text goals col" id="aw_goals" name="aw_goals" value="<%=game.aw_goals%>" style="max-width: 20%; font-size: 2em">
+                </div>
+                <div class="away fw-bold fs-3 col-3"><img src="" style="width: 100px; height: 100px;"><%=game.away_team%></div>
+              </div>
+              <input type="text" id="played" name="played" hidden value="<%=game.played%>">
+              <div style="margin-left: 8%; margin-top: 5%; padding-bottom: 3%;">
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="playedcheck">
+                  <label class="form-check-label" for="playedcheck">Disputata</label>
+                </div>
+                <button href="" class="btn btn-success save-match mt-3">Salva Modifiche</button>
+              </div>
+            </form>
+          </div>
+        </div>
+    </div>
+
+    <script>
+      if($(".home").text() == "Werder Brema"){
+          $(".home").text().replace("Werder Brema","W. Brema");
+      }
+    </script>
+    
+    
+    <script src="/javascripts/script.js"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+  </body>
+</html>
